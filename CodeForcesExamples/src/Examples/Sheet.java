@@ -98,15 +98,22 @@ public class Sheet {
                 {
                     
                     try {
-                        numPart = Integer.parseInt(answer.substring(i , answer.length()));
+                        numPart = Integer.parseInt(answer.substring(i , answer.length())); //number part comes after the letter part
                         _condition2 = true;
                         letterPart = answer.substring(0 , i);
                         //System.out.println(letterPart + " " + numPart);
                         break;
                     }catch(NumberFormatException e) {
-                        System.out.println(e);
-                        _condition2 = false;
-                        break;
+                        if(answer.substring(i , answer.length()).contains("ROW") || answer.substring(i , answer.length()).contains("COL")) // could be that the "mistake" of finding letters
+                        {                                                                                                                  // in the number part is due to it containing
+                            format2 = false;                                                                                               // COL or ROW
+                            break;
+                        } else {
+                            System.out.println(e);
+                            _condition2 = false;
+                            break;
+                        }
+
                     }
 
                 }
