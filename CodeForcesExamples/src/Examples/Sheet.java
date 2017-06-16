@@ -31,10 +31,6 @@ public class Sheet {
 
         int rowCoord, colCoord; //coordinates for format1
 
-        int numPart; // coordinates for format2
-        String letterPart;
-
-
         if(condition1 && condition2 && condition3 && condition4 && condition5)
         {
             if (rowComesFirst) {    //if row comes first we store the first coordinate for the row, and the second for the column
@@ -80,7 +76,29 @@ public class Sheet {
             }
         }else format1 = false;
 
-        
+
+        int numPart; // coordinates for format2
+        String letterPart;
+
+        char character = answer.charAt(0);
+        int ascii = (int) character;    //  first character must be a letter in format2
+
+        boolean _condition1 = ascii >= 65 && ascii <= 90,   //  uppercase alphabet is from 65 = A to 90 = Z
+                _condition2;  // this will be true when we have a seperate letter segment followed by a number segment
+
+        if(_condition1){
+            for (int i = 1; i < answer.length(); i++){
+
+                character = answer.charAt(i);
+                ascii = (int) character;
+
+                if(ascii >= 48 && ascii <= 57) //  once we get to the number part we'll try to parse it
+                {
+
+                }else continue;
+            }
+        }
+
 
         //System.out.println(format1);
     }
