@@ -77,7 +77,7 @@ public class Sheet {
 
 
         int numPart = 0; // coordinates for format2
-        String letterPart;
+        String letterPart = "none";
 
         char character = answer.charAt(0);
         int ascii = (int) character;    //  first character must be a letter in format2
@@ -106,7 +106,7 @@ public class Sheet {
                     }catch(NumberFormatException e) {
                         if(answer.substring(i , answer.length()).contains("ROW") || answer.substring(i , answer.length()).contains("COL")) // could be that the "mistake" of finding letters
                         {                                                                                                                  // in the number part is due to it containing
-                            format2 = false;                                                                                               // COL or ROW
+                            _condition2 = false;                                                                                               // COL or ROW
                             break;
                         } else {
                             System.out.println(e);
@@ -124,9 +124,29 @@ public class Sheet {
         format2 = _condition1 && _condition2 && _condition3;
 
         if (format1) {
-            System.out.println("your input belongs in format1");
+
+            System.out.println("your input belongs in format 1");
+
         } else if (format2) {
-            System.out.println("your input belongs in format2");
+
+            System.out.println("Your input belongs in format 2");
+            System.out.println("By converting to format 1, we get: " + convertToFormat1(numPart, letterPart));
+
         }
+    }
+
+    public static String convertToFormat1 (int numbers, String letters) {
+
+        int len = letters.length() - 1; // used as the exponent of 26, currently the leftmost degree
+        double sum = 0; // once the following loop is done, this will be the accurate column number representation
+
+        for (int i = 0; i < letters.length(); i++) {    // left to right with decreasing exponents
+
+            sum = sum + Math.pow( 26 , len - i) * ((int) letters.charAt(i) - 64); // the power of 26 (number of letters in alphabet) with the [len - i]'th
+        }                                                                         // position will be multiplied by the adjusted ascii of said letter
+
+        int result = (int) sum;
+
+        return "COl" + result + "ROW" + numbers;
     }
 }
