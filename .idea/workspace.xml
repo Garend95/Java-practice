@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e937a9-6913-4615-b9f4-90639707dbc0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodeForcesExamples/src/Examples/Sheet.java" afterPath="$PROJECT_DIR$/CodeForcesExamples/src/Examples/Sheet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -273,6 +271,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="created method to convert to format2. A simple loop detects number of letters needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="created method to convert to format2. A simple loop detects number of letters needed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
