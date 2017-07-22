@@ -142,11 +142,23 @@ public class Sheet {
 
         for (int i = 0; i < letters.length(); i++) {    // left to right with decreasing exponents
 
-            sum = sum + Math.pow( 26 , len - i) * ((int) letters.charAt(i) - 64); // the power of 26 (number of letters in alphabet) with the [len - i]'th
+            sum += Math.pow( 26 , len - i) * ((int) letters.charAt(i) - 64); // the power of 26 (number of letters in alphabet) with the [len - i]'th
         }                                                                         // position will be multiplied by the adjusted ascii of said letter
 
-        int result = (int) sum;
+        int result = (int) sum;                     // simply convert to the intended format and then print the format down below
 
         return "COl" + result + "ROW" + numbers;
+    }
+
+    public static String convertToFormat2 (int rowNumber, int colNumber) {
+
+        int coordinate = 0;  // this will act as a guide on which letters to pick
+
+        int i = 0;  // this will act as the exponent of 26 starting from 0 on the rightmost letter and will detect the number of letters needed
+        while (colNumber > coordinate) {
+            coordinate += Math.pow( 26 , i ) * 26;  // when the column number surpasses a coordinate "level" ex Z is 0th level ZZ is 1st etc
+        }                                           // but is then smaller than the next level, that means that it can be expressed
+                                                    // using just the number of letters of the next level
+
     }
 }
