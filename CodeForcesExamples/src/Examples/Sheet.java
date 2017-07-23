@@ -126,6 +126,7 @@ public class Sheet {
         if (format1) {
 
             System.out.println("your input belongs in format 1");
+            System.out.println("By converting to format 2, we get: " + convertToFormat2(rowCoord, colCoord));
 
         } else if (format2) {
 
@@ -153,6 +154,7 @@ public class Sheet {
     public static String convertToFormat2 (int rowNumber, int colNumber) {
 
         int coordinate = 0;  // this will act as a guide on which letters to pick
+        String lettersFinal = "";
 
         int i = 0;  // this will act as the exponent of 26 starting from 0 on the rightmost letter and will detect the number of letters needed
         while (colNumber > coordinate) {
@@ -165,17 +167,45 @@ public class Sheet {
 
         while (i >= 0) {
 
-            //coordinate = Math.pow(26, i) * j +
-            //if ()
+            coordinate = (int) Math.pow(26, i) * j + allZsFromLowerExponent(i);     // this could be similar to a greedy algorithm ,beginning with the largest letter representations
+            if (coordinate > colNumber) {
+                j--;
+                if (j == 1) {
+                    lettersFinal += (char) (j + 64);
+                    j = 26;
+                    i--;
+                }
+                continue;
+            }
+            else if (coordinate < colNumber) {
+                lettersFinal += (char) (j + 64);
+                j = 26;
+                i--;
+            }
+            else if (coordinate == colNumber) {
+                lettersFinal += (char) (j + 64) + returnAllLowerZs(i);
+                break;
+            }
         }
 
-        return "not defined yet";
+        return lettersFinal + rowNumber;
     }
 
-    public static int allZsFromLowerExponent (int exponent) {
-
+    public static int allZsFromLowerExponent (int exponent) {   // this tends to the lower letters of the letter that we are working on, because only the current letter cannot
+                                                                // accurately express the number representation, it might overvalue or undervalue by itself
         if (exponent - 1 == 0) {
-            
+            return 26;                      // here it comes down to the smallest index 0 where Z is 26
         }
+        else if (exponent - 1 < 0) {
+            return 0;   // in case the the exponent was 0 to begin with, there's no need to add anything and the recursive method would break
+        }
+        else {
+            return (int) (Math.pow(26, exponent) + allZsFromLowerExponent(exponent - 1));   // return the Z value of this level along with lower levels recursively until they halt
+        }
+    }
+
+    public static String returnAllLowerZs (int exponent) {
+        if (exponent == 0) return "";
+        else return "Z" + returnAllLowerZs(exponent - 1);
     }
 }
