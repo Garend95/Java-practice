@@ -158,9 +158,12 @@ public class Sheet {
 
         int i = 0;  // this will act as the exponent of 26 starting from 0 on the rightmost letter and will detect the number of letters needed
         while (colNumber > coordinate) {
-            coordinate += Math.pow(26, i + 1) ;  // when the column number surpasses a coordinate "level" ex Z is 0th level ZZ is 1st etc
+            i++;
+            coordinate += Math.pow(26, i) ;  // when the column number surpasses a coordinate "level" ex Z is 0th level ZZ is 1st etc
         }                                           // but is then smaller than the next level, that means that it can be expressed
                                                     // using just the number of letters of the next level
+        i--; // this is the number of the needed letters
+        //System.out.println(i);
 
         int j = 26; // this will act as the index of letters which we'll decrement for each i to determine the letter at each position starting
                     // with the last
@@ -168,6 +171,7 @@ public class Sheet {
         while (i >= 0) {
 
             coordinate = (int) Math.pow(26, i) * j + allZsFromLowerExponent(i);     // this could be similar to a greedy algorithm ,beginning with the largest letter representations
+            System.out.println(coordinate);
             if (coordinate > colNumber) {
                 j--;
                 if (j == 1) {
